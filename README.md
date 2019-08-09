@@ -11,7 +11,7 @@ MVC:
   gitignore made at gitignore.io
 
   add classlib for data
-    $ dotnet new classlib -o Lib.Data
+    $ dotnet new classlib --output Lib.Data --framework netcoreapp2.2
     $ dotnet sln add Lib.Data\Lib.Data.csproj
 
   @classlib Data created Models:
@@ -22,10 +22,9 @@ MVC:
     PostReply
 
   @Mvc add project ref to classlib Data
+    @Mvc/ $ dotnet add reference ../Lib.Data/Lib.Data.csproj
 
-  Env var for connection string
-
-  Add service DbContext + EF + PostgreSQL
+  Add service to Mvc/Startup.cs with DbContext + EF + PostgreSQL
 
   Add Connection String to Dev Env:
     $ dotnet user-secrets set "ConnectionStrings:PostgreSQL:LambdaForumDb" "..."
@@ -38,3 +37,10 @@ MVC:
 
   Run Migration to Database 
     $ dotnet ef database update --project Lib.Data/ --startup-project Mvc/
+
+  add classlib for services
+    $ dotnet new classlib --output Lib.Services --framework netcoreapp2.2
+    $ dotnet sln add Lib.Services/Lib.Services.csproj
+
+  @Lib.Services add project ref to classlib Data
+    @Lib.Services $ dotnet add reference ../Lib.Data/Lib.Data.csproj
