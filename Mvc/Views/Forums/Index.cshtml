@@ -1,0 +1,15 @@
+@model Mvc.ViewModels.Forums.ForumsIndexViewModel
+
+<h1>Forums - Index</h1>
+
+@foreach (var forum in Model.Forums)
+{
+  <div>
+    <div>
+      @forum.Title
+    </div>
+    <div>
+      @forum.Description
+    </div>
+  </div>
+}

@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Lib.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Lib.Data.Services;
+using Lib.Services;
 
 namespace Mvc
 {
@@ -35,6 +37,8 @@ namespace Mvc
           .AddEntityFrameworkStores<ApplicationDbContext>();
 
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+      services.AddScoped<IForums, ForumsService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
