@@ -9,3 +9,7 @@ MVC:
     $ dotnet sln add Mvc\Mvc.csproj
 
   gitignore made at gitignore.io
+
+  add classlib for data
+    $ dotnet new classlib -o Lib.Data
+    $ dotnet sln add Lib.Data\Lib.Data.csproj
