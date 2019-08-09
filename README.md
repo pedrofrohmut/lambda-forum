@@ -26,3 +26,15 @@ MVC:
   Env var for connection string
 
   Add service DbContext + EF + PostgreSQL
+
+  Add Connection String to Dev Env:
+    $ dotnet user-secrets set "ConnectionStrings:PostgreSQL:LambdaForumDb" "..."
+
+  Add Migrations: Initial
+    $ dotnet build
+    $ dotnet ef migrations add InitialCreate --project Lib.Data/ --output-dir 
+    Lib.Data/Migrations --startup-project Mvc/
+    (*to undone $ dotnet ef migrations remove)
+
+  Run Migration to Database 
+    $ dotnet ef database update --project Lib.Data/ --startup-project Mvc/

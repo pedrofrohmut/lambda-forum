@@ -28,7 +28,7 @@ namespace Mvc
 
       services.AddEntityFrameworkNpgsql()
         .AddDbContext<ApplicationDbContext>(options =>
-          options.UseNpgsql(Configuration["ConnectionStrings:PostgreSQL:LambdaForum"]));
+          options.UseNpgsql(Configuration["ConnectionStrings:PostgreSQL:LambdaForumDb"]));
 
       services.AddDefaultIdentity<IdentityUser>()
           .AddDefaultUI(UIFramework.Bootstrap4)
