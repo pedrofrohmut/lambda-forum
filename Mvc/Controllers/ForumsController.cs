@@ -53,7 +53,7 @@ namespace Mvc.Controllers
           AuthorName = post.ApplicationUser.UserName,
           AuthorRating = post.ApplicationUser.Rating,
           AuthorId = post.ApplicationUser.Id,
-          DatePosted = post.CreatedAt,
+          CreatedAt = post.CreatedAt,
           PostRepliesCount = post.PostReplies.Count(),
         });
       var model =

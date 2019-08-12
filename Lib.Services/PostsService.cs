@@ -46,9 +46,12 @@ namespace Lib.Services
         .Where(post => post.Forum.Id == forumId)
         .ToListAsync();
 
-    public Task<Post> GetById(string id)
-    {
-      throw new System.NotImplementedException();
-    }
+    public async Task<Post> GetById(string id) =>
+      await this.context.Posts
+        .Include(post => post.Forum)
+        .Include(post => post.ApplicationUser)
+        .Include(post => post.PostReplies)
+        .ThenInclude(reply => reply.ApplicationUser)
+        .FirstOrDefaultAsync(post => post.Id == id);
   }
 }
