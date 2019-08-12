@@ -34,7 +34,20 @@ namespace Mvc
 
       services.AddDefaultIdentity<ApplicationUser>()
           .AddDefaultUI(UIFramework.Bootstrap4)
-          .AddEntityFrameworkStores<ApplicationDbContext>();
+          .AddEntityFrameworkStores<ApplicationDbContext>()
+          .AddDefaultTokenProviders();
+
+      // TODO: EmailSender Stuff
+      //services.AddTransient<IEmailSender, EmailSender>();
+
+      services.Configure<IdentityOptions>(options =>
+      {
+        options.Password.RequireDigit = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireLowercase = false;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequiredLength = 3;
+      });
 
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

@@ -1,0 +1,35 @@
+@model Mvc.ViewModels.Posts.PostsIndexViewModel
+
+<h1>@Model.Post.Title</h1>
+
+<div>
+  Author: @Model.Post.AuthorName (@Model.Post.AuthorRating)
+</div>
+
+<div>
+  CreatedAt: @Model.Post.CreatedAt
+</div>
+
+<div>
+  @Model.Post.Content
+</div>
+
+@if (Model.PostReplies.Any())
+{
+  @foreach (PostReplyViewModel reply in Model.PostReplies)
+  {
+    <div>
+      <div>
+        Reply Author: @reply.AuthorName (@reply.AuthorRating)
+      </div>
+
+      <div>
+        CreatedAt: @reply.CreatedAt
+      </div>
+
+      <div>
+        @reply.Content
+      </div>
+    </div>
+  }
+}
