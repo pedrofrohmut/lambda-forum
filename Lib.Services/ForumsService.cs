@@ -32,10 +32,14 @@ namespace Lib.Services
       throw new System.NotImplementedException();
     }
 
-    public Task<Forum> GetById(string id)
-    {
-      throw new System.NotImplementedException();
-    }
+    public async Task<Forum> GetById(string id) =>
+      await this.context.Forums
+        .Include(forum => forum.Posts)
+        .ThenInclude(post => post.ApplicationUser)
+        .Include(forum => forum.Posts)
+        .ThenInclude(post => post.PostReplies)
+        .ThenInclude(reply => reply.ApplicationUser)
+        .FirstOrDefaultAsync(forum => forum.Id == id);
 
     public Task UpdateDescritionById(string id, string newDescription)
     {

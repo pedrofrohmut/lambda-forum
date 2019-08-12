@@ -4,13 +4,16 @@ using Mvc.ViewModels;
 
 namespace Mvc.Controllers
 {
+  [Route("home")]
   public class HomeController : Controller
   {
+    [HttpGet("index")]
     public IActionResult Index()
     {
       return View();
     }
 
+    [HttpGet("privacy")]
     public IActionResult Privacy()
     {
       return View();

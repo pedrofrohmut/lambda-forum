@@ -31,8 +31,7 @@ MVC:
 
   * Add Migrations: Initial
     * $ dotnet build
-    * $ dotnet ef migrations add InitialCreate --project Lib.Data/ --output-dir 
-    * Lib.Data/Migrations --startup-project Mvc/
+    * $ dotnet ef migrations add InitialCreate --project Lib.Data/ --output-dir Lib.Data/Migrations --startup-project Mvc/
     * (\*to undone $ dotnet ef migrations remove)
 
   * Run Migration to Database 
@@ -44,3 +43,7 @@ MVC:
 
   * @Lib.Services add project ref to classlib Data
     * @Lib.Services $ dotnet add reference ../Lib.Data/Lib.Data.csproj
+
+  * Add Migration to Database
+    * $ dotnet ef migrations add "UpdateApplicationUser" --output-dir Migrations -p Lib.Data\Lib.Data.csproj -s Mvc\Mvc.csproj
+    * $ dotnet ef database update -p Lib.Data\Lib.Data.csproj -s Mvc\Mvc.csproj
