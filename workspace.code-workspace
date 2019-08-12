@@ -1,0 +1,14 @@
+{
+  "folders": [
+	{
+		"path": "Mvc"
+	},
+	{
+		"path": "Lib.Services"
+	},
+	{
+		"path": "Lib.Data"
+	}
+],
+  "settings": {}
+}

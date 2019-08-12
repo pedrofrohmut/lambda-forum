@@ -32,7 +32,7 @@ namespace Mvc
         .AddDbContext<ApplicationDbContext>(options =>
           options.UseNpgsql(Configuration["ConnectionStrings:PostgreSQL:LambdaForumDb"]));
 
-      services.AddDefaultIdentity<IdentityUser>()
+      services.AddDefaultIdentity<ApplicationUser>()
           .AddDefaultUI(UIFramework.Bootstrap4)
           .AddEntityFrameworkStores<ApplicationDbContext>();
 
