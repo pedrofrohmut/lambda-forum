@@ -1,1 +1,31 @@
-<h1>Topic Page</h1>
+@model Mvc.ViewModels.Forums.ForumsTopicViewModel
+
+<h1>Welcome to the @Model.Forum.Title Forum.</h1>
+
+@if (Model.Posts.Any())
+{
+  <table class="table table-bordered table-hover">
+    <tbody>
+      @foreach (var post in Model.Posts)
+      {
+        <tr>
+          <td>
+            <a asp-controller="Posts" asp-action="Index" asp-route-id="@post.Id">@post.Title</a>
+          </td>
+          <td>@post.AuthorName</td>
+          <td>@post.DatePosted</td>
+          <td>@post.PostRepliesCount</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
+else
+{
+  <div class="no-posts">
+    <h3>
+      It looks like there are no @Model.Forum.Title posts yet. <br />
+      Why not <a asp-controller="Posts" asp-action="Create" asp-route-id="@Model.Forum.Id">Create</a> one?
+    </h3>
+  </div>
+}
