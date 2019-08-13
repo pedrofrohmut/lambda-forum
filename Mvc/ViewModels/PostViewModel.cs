@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Lib.Data.Models;
 
 namespace Mvc.ViewModels
 {
@@ -14,5 +17,22 @@ namespace Mvc.ViewModels
     public int AuthorRating { get; set; }
 
     public int PostRepliesCount { get; set; }
+
+    public PostViewModel() { }
+
+    public PostViewModel(
+      Post postDb,
+      ApplicationUser userDb,
+      IEnumerable<PostReply> repliesDb)
+    {
+      this.Id = postDb.Id;
+      this.Title = postDb.Title;
+      this.Content = postDb.Content;
+      this.CreatedAt = postDb.CreatedAt;
+      this.AuthorId = userDb.Id;
+      this.AuthorName = userDb.UserName;
+      this.AuthorRating = userDb.Rating;
+      this.PostRepliesCount = repliesDb.Count();
+    }
   }
 }

@@ -1,4 +1,5 @@
 using System;
+using Lib.Data.Models;
 
 namespace Mvc.ViewModels
 {
@@ -14,5 +15,22 @@ namespace Mvc.ViewModels
     public string AuthorImageUrl { get; set; }
 
     public string PostId { get; set; }
+
+    public PostReplyViewModel() { }
+
+    public PostReplyViewModel(
+      PostReply replyDb,
+      ApplicationUser userDb,
+      Post postDb)
+    {
+      this.Id = replyDb.Id;
+      this.Content = replyDb.Content;
+      this.CreatedAt = replyDb.CreatedAt;
+      this.AuthorId = userDb.Id;
+      this.AuthorName = userDb.UserName;
+      this.AuthorRating = userDb.Rating;
+      this.AuthorImageUrl = userDb.ProfileImageUrl;
+      this.PostId = postDb.Id;
+    }
   }
 }

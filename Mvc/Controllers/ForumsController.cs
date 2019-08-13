@@ -23,13 +23,7 @@ namespace Mvc.Controllers
     public async Task<ActionResult> Index()
     {
       var forumsDb = await this.forumsService.GetAll();
-      var forums = forumsDb.Select(forum =>
-        new ForumViewModel
-        {
-          Id = forum.Id,
-          Title = forum.Title,
-          Description = forum.Description,
-        });
+      var forums = forumsDb.Select(forum => new ForumViewModel(forum));
       return View(new ForumsIndexViewModel { Forums = forums });
     }
 
@@ -37,31 +31,9 @@ namespace Mvc.Controllers
     public async Task<ActionResult> Topic(string id)
     {
       var forumDb = await this.forumsService.GetById(id);
-      var forum =
-        new ForumViewModel
-        {
-          Id = forumDb.Id,
-          Title = forumDb.Title,
-          Description = forumDb.Description,
-          ImageUrl = forumDb.ImageUrl,
-        };
-      var posts = forumDb.Posts.Select(post =>
-        new PostViewModel
-        {
-          Id = post.Id,
-          Title = post.Title,
-          AuthorName = post.ApplicationUser.UserName,
-          AuthorRating = post.ApplicationUser.Rating,
-          AuthorId = post.ApplicationUser.Id,
-          CreatedAt = post.CreatedAt,
-          PostRepliesCount = post.PostReplies.Count(),
-        });
-      var model =
-        new ForumsTopicViewModel
-        {
-          Forum = forum,
-          Posts = posts,
-        };
+      var forum = new ForumViewModel(forumDb);
+      var posts = forumDb.Posts.Select(post => new PostViewModel(post, post.ApplicationUser, post.PostReplies));
+      var model = new ForumsTopicViewModel { Forum = forum, Posts = posts };
       return View(model);
     }
   }
