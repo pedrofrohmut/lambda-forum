@@ -37,10 +37,14 @@ namespace Lib.Services
       throw new System.NotImplementedException();
     }
 
-    public Task<IEnumerable<Post>> GetAll()
-    {
-      throw new System.NotImplementedException();
-    }
+    public async Task<IEnumerable<Post>> GetAll() =>
+      await this.context.Posts
+        .Include(post => post.ApplicationUser)
+        .Include(post => post.PostReplies)
+        .ThenInclude(reply => reply.ApplicationUser)
+        .Include(post => post.Forum)
+        .OrderByDescending(post => post.CreatedAt)
+        .ToListAsync();
 
     public async Task<IEnumerable<Post>> GetByForumId(string forumId) =>
       await this.context.Posts
@@ -54,5 +58,15 @@ namespace Lib.Services
         .Include(post => post.PostReplies)
         .ThenInclude(reply => reply.ApplicationUser)
         .FirstOrDefaultAsync(post => post.Id == id);
+
+    public async Task<IEnumerable<Post>> GetLatestPosts(int amount) =>
+      await this.context.Posts
+        .Include(post => post.ApplicationUser)
+        .Include(post => post.PostReplies)
+        .ThenInclude(reply => reply.ApplicationUser)
+        .Include(post => post.Forum)
+        .OrderByDescending(post => post.CreatedAt)
+        .Take(amount)
+        .ToListAsync();
   }
 }

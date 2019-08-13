@@ -1,8 +1,61 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model Mvc.ViewModels.Home.HomeIndexViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row mb-4">
+  <div class="col-md-6">
+    <div class="front-page-header">Learn, Collaborate, Share Knowledge</div>
+
+    <div class="front-page-subheader">Lambda Forums is the world's fastest growing coding forum</div>
+
+    <form asp-controller="search" asp-action="search" method="GET">
+      <input asp-for="SearchQuery" class="form-control my-2" placeholder="Search..." />
+    </form>
+  </div>
+
+  <div class="col-md-6"></div>
+</div>
+
+<div class="front-page-content row">
+  <h3 class="latest-posts">Latest Posts</h3>
+
+  <table class="table table-hover">
+    <tbody>
+      @foreach (var post in Model.LatestPosts)
+      {
+        <tr class="py-0">
+          <td>
+            <img src="@post.Forum.ImageUrl" alt="">
+
+            <div class="post-title">
+              <a asp-controller="posts" asp-action="index" asp-route-id="@post.Id">
+                @post.Title
+              </a>
+            </div>
+
+            <div class="post-subtitle">
+              <div class="post-replies">
+                @if (post.PostRepliesCount == 0)
+                {
+                  <span>No Replies</span>
+                }
+                @if (post.PostRepliesCount == 1)
+                {
+                  <span>@post.PostRepliesCount Reply</span>
+                }
+                @if (post.PostRepliesCount > 1)
+                {
+                  <span>@post.PostRepliesCount Replies</span>
+                }
+              </div>
+            </div>
+
+            <div class="post-author">
+              <a asp-controller="authors" asp-action="detail" asp-route-id="@post.Author.Id">
+                @post.Author.Name
+              </a>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
 </div>

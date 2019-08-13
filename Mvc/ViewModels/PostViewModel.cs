@@ -16,6 +16,7 @@ namespace Mvc.ViewModels
     public ApplicationUserViewModel Author { get; set; }
     public string AuthorId { get; set; }
     public IEnumerable<PostReplyViewModel> Replies { get; set; }
+    public ForumViewModel Forum { get; set; }
     public string ForumId { get; set; }
 
     public PostViewModel() { }
@@ -39,6 +40,21 @@ namespace Mvc.ViewModels
       this.CreatedAt = postDb.CreatedAt;
       this.Author = new ApplicationUserViewModel(userDb);
       this.PostRepliesCount = repliesDb.Count();
+    }
+
+    public PostViewModel(
+      Post postDb,
+      ApplicationUser userDb,
+      IEnumerable<PostReply> repliesDb,
+      Forum forumDb)
+    {
+      this.Id = postDb.Id;
+      this.Title = postDb.Title;
+      this.Content = postDb.Content;
+      this.CreatedAt = postDb.CreatedAt;
+      this.Author = new ApplicationUserViewModel(userDb);
+      this.PostRepliesCount = repliesDb.Count();
+      this.Forum = new ForumViewModel(forumDb);
     }
 
     public Post GetModel(PostViewModel viewModel)

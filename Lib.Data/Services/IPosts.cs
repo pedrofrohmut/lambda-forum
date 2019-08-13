@@ -32,6 +32,11 @@ namespace Lib.Data.Services
     Task<IEnumerable<Post>> GetByForumId(string forumId);
 
     /*
+      READ: Get the latest posts limited with the amount parameter
+    */
+    Task<IEnumerable<Post>> GetLatestPosts(int amount);
+
+    /*
       UPDATE: Edit post content
     */
     Task EditContent(string id, string newContent);
