@@ -11,14 +11,22 @@ namespace Mvc.ViewModels
     public string Title { get; set; }
     public string Content { get; set; }
     public DateTime CreatedAt { get; set; }
-
-    public string AuthorId { get; set; }
-    public string AuthorName { get; set; }
-    public int AuthorRating { get; set; }
-
     public int PostRepliesCount { get; set; }
 
+    public ApplicationUserViewModel Author { get; set; }
+    public string AuthorId { get; set; }
+    public IEnumerable<PostReplyViewModel> Replies { get; set; }
+    public string ForumId { get; set; }
+
     public PostViewModel() { }
+
+    public PostViewModel(Post postDb)
+    {
+      this.Id = postDb.Id;
+      this.Title = postDb.Title;
+      this.Content = postDb.Content;
+      this.CreatedAt = postDb.CreatedAt;
+    }
 
     public PostViewModel(
       Post postDb,
@@ -29,10 +37,19 @@ namespace Mvc.ViewModels
       this.Title = postDb.Title;
       this.Content = postDb.Content;
       this.CreatedAt = postDb.CreatedAt;
-      this.AuthorId = userDb.Id;
-      this.AuthorName = userDb.UserName;
-      this.AuthorRating = userDb.Rating;
+      this.Author = new ApplicationUserViewModel(userDb);
       this.PostRepliesCount = repliesDb.Count();
+    }
+
+    public Post GetModel(PostViewModel viewModel)
+    {
+      return new Post
+      {
+        Id = viewModel.Id,
+        Title = viewModel.Title,
+        Content = viewModel.Content,
+        CreatedAt = DateTime.UtcNow,
+      };
     }
   }
 }

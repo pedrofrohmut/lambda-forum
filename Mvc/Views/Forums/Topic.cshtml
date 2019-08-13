@@ -4,6 +4,8 @@
 
 @if (Model.Posts.Any())
 {
+  <a class="py-2 pl-2" style="display: block;" asp-controller="posts" asp-action="create" asp-route-forumId="@Model.Forum.Id">Create a New Post</a>
+
   <table class="table table-bordered table-hover">
     <tbody>
       @foreach (var post in Model.Posts)
@@ -12,7 +14,7 @@
           <td>
             <a asp-controller="Posts" asp-action="Index" asp-route-id="@post.Id">@post.Title</a>
           </td>
-          <td>@post.AuthorName</td>
+          <td>@post.Author.Name</td>
           <td>@post.CreatedAt</td>
           <td>@post.PostRepliesCount</td>
         </tr>
@@ -23,9 +25,9 @@
 else
 {
   <div class="no-posts">
-    <h3>
+    <h5>
       It looks like there are no @Model.Forum.Title posts yet. <br />
-      Why not <a asp-controller="Posts" asp-action="Create" asp-route-id="@Model.Forum.Id">Create</a> one?
-    </h3>
+      Why not <a asp-controller="posts" asp-action="create" asp-route-forumId="@Model.Forum.Id">Create</a> one?
+    </h5>
   </div>
 }

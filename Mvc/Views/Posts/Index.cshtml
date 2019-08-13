@@ -3,7 +3,7 @@
 <h1>@Model.Post.Title</h1>
 
 <div>
-  Author: @Model.Post.AuthorName (@Model.Post.AuthorRating)
+  Author: @Model.Post.Author.Name (@Model.Post.Author.Rating)
 </div>
 
 <div>
@@ -20,7 +20,7 @@
   {
     <div>
       <div>
-        Reply Author: @reply.AuthorName (@reply.AuthorRating)
+        Reply Author: @reply.Author.Name (@reply.Author.Rating)
       </div>
 
       <div>

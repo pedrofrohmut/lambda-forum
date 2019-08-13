@@ -1,0 +1,26 @@
+@model Mvc.ViewModels.Posts.PostsCreateViewModel
+
+<h1>New Post | @Model.Forum.Title</h1>
+
+<form asp-controller="Posts" asp-action="Add" class="add-post-form">
+  <input type="hidden" asp-for="Post.ForumId" name="newPost.ForumId" />
+  <input type="hidden" asp-for="Post.AuthorId" name="newPost.AuthorId" />
+
+  <div class="form-group">
+    <label asp-for="Post.Title">Title</label>
+    <input asp-for="Post.Title" name="newPost.Title" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label asp-for="Post.Content">Content</label>
+    <textarea
+      asp-for="Post.Content"
+      name="newPost.Content"
+      style="resize: none;"
+      cols="30" rows="10"
+      class="form-control"
+    ></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add</button>
+</form>

@@ -9,10 +9,7 @@ namespace Mvc.ViewModels
     public string Content { get; set; }
     public DateTime CreatedAt { get; set; }
 
-    public string AuthorId { get; set; }
-    public string AuthorName { get; set; }
-    public int AuthorRating { get; set; }
-    public string AuthorImageUrl { get; set; }
+    public ApplicationUserViewModel Author { get; set; }
 
     public string PostId { get; set; }
 
@@ -26,10 +23,7 @@ namespace Mvc.ViewModels
       this.Id = replyDb.Id;
       this.Content = replyDb.Content;
       this.CreatedAt = replyDb.CreatedAt;
-      this.AuthorId = userDb.Id;
-      this.AuthorName = userDb.UserName;
-      this.AuthorRating = userDb.Rating;
-      this.AuthorImageUrl = userDb.ProfileImageUrl;
+      this.Author = new ApplicationUserViewModel(userDb);
       this.PostId = postDb.Id;
     }
   }

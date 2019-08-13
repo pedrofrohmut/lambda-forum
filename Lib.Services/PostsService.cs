@@ -16,9 +16,10 @@ namespace Lib.Services
       this.context = context;
     }
 
-    public Task Create(Post newPost)
+    public async Task Create(Post newPost)
     {
-      throw new System.NotImplementedException();
+      await this.context.Posts.AddAsync(newPost);
+      await this.context.SaveChangesAsync();
     }
 
     public Task CreateReplyByPostId(string postId, PostReply newReply)
