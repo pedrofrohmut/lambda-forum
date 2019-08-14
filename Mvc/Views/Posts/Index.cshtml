@@ -1,35 +1,21 @@
 @model Mvc.ViewModels.Posts.PostsIndexViewModel
 
-<h1>@Model.Post.Title</h1>
-
-<div>
-  Author: @Model.Post.Author.Name (@Model.Post.Author.Rating)
+<div class="post-index">
+  <div class="post title">@Model.Post.Title</div>
+  <div class="post author">Author: @Model.Post.Author.Name (@Model.Post.Author.Rating)</div>
+  <div class="post created">CreatedAt: @Model.Post.CreatedAt</div>
+  <div class="post content">@Model.Post.Content</div>
+  <div class="post replies">
+    @if (Model.PostReplies.Any())
+    {
+      @foreach (PostReplyViewModel reply in Model.PostReplies)
+      {
+        <div>
+          <div class="reply author">Reply Author: @reply.Author.Name (@reply.Author.Rating)</div>
+          <div class="reply created">CreatedAt: @reply.CreatedAt</div>
+          <div class="reply content">@reply.Content</div>
+        </div>
+      }
+    }
+  </div>
 </div>
-
-<div>
-  CreatedAt: @Model.Post.CreatedAt
-</div>
-
-<div>
-  @Model.Post.Content
-</div>
-
-@if (Model.PostReplies.Any())
-{
-  @foreach (PostReplyViewModel reply in Model.PostReplies)
-  {
-    <div>
-      <div>
-        Reply Author: @reply.Author.Name (@reply.Author.Rating)
-      </div>
-
-      <div>
-        CreatedAt: @reply.CreatedAt
-      </div>
-
-      <div>
-        @reply.Content
-      </div>
-    </div>
-  }
-}

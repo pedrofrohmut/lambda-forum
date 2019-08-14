@@ -6,8 +6,11 @@
   <div class="front-page-subheader">Lambda Forums is the world's fastest growing coding forum</div>
   <div>
     <form asp-controller="search" asp-action="search" method="GET">
-      <div class="form-group">
+      <div class="inline">
         <input asp-for="SearchQuery" class="form-control" placeholder="Search..." />
+        <button type="submit">
+          <i class="material-icons">search</i>
+        </button>
       </div>
     </form>
   </div>

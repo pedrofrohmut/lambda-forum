@@ -6,7 +6,7 @@
 {
   <a class="py-2 pl-2" style="display: block;" asp-controller="posts" asp-action="create" asp-route-forumId="@Model.Forum.Id">Create a New Post</a>
 
-  <table class="table table-bordered table-hover">
+  <table>
     <tbody>
       @foreach (var post in Model.Posts)
       {
