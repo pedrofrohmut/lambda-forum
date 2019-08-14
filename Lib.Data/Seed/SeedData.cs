@@ -17,35 +17,35 @@ namespace Lib.Data.Seed
         Title = "Python",
         Description = "A popular dynamic, strongly typed general purpose programming language with focus on readability",
         CreatedAt = now,
-        ImageUrl = "images/forums/python.png",
+        ImageUrl = "/images/forums/python.png",
       },
       new Forum
       {
         Title = "CSharp",
         Description = "An Object-oriented programming language for building applications on the .Net Framework",
         CreatedAt = now,
-        ImageUrl = "images/forums/csharp.png",
+        ImageUrl = "/images/forums/csharp.png",
       },
       new Forum
       {
         Title = "Haskell",
         Description = "A popular functional programming language",
         CreatedAt = now,
-        ImageUrl = "images/forums/haskell.png",
+        ImageUrl = "/images/forums/haskell.png",
       },
       new Forum
       {
         Title = "JavaScript",
         Description = "Multi-paradigm language based on the ECMAScript specification",
         CreatedAt = now,
-        ImageUrl = "images/forums/javascript.png",
+        ImageUrl = "/images/forums/javascript.png",
       },
       new Forum
       {
         Title = "Go",
         Description = "Open-source statically-typed programming language developed at Google",
         CreatedAt = now,
-        ImageUrl = "images/forums/go.png",
+        ImageUrl = "/images/forums/go.png",
       },
     };
 

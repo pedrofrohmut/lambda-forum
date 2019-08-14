@@ -1,56 +1,160 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+:root {
+  font-size: 16px;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  min-height: 100vh;
+  position: relative;
+  background-image: url("/images/bg-01.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #000;
+  background-attachment: fixed;
+  background-position: center;
+  color: #fff;
+  padding-bottom: 60px;
 }
-.footer {
+
+header {
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 4vw 18px;
+  margin-bottom: 2rem;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+}
+
+header .logo img {
+  background-color: #fff;
+  height: 35px;
+  margin-right: 12px;
+  position: relative;
+  top: 2px;
+}
+
+header .logo a {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+header a {
+  color: #f5f5f5;
+}
+
+header ul {
+  margin: 0;
+}
+
+header li {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+header li:last-child {
+  margin-right: 0;
+}
+
+header .logout {
+  border: 0;
+  background: transparent;
+  color: #fff;
+}
+
+footer {
   position: absolute;
   bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  /* Set the fixed height of the footer here */
+  right: 0;
+  left: 0;
   height: 60px;
-  line-height: 60px; /* Vertically center the text there */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #f5f5f5;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+table {
+  background-color: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  width: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+table thead {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+table td {
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+table td,
+table th {
+  padding: 1rem 2rem;
+  border-right: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+table td:last-child,
+table th:last-child {
+  border-right: 0;
+}
+
+.front-page-splash {
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 4rem;
+}
+
+.front-page-splash .front-page-header {
+  font-family: "Roboto", sans-serif;
+  font-size: 3.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.front-page-splash .front-page-subheader {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.front-page-content h3 {
+  margin-bottom: 2rem;
+}
+
+.front-page-content .post {
+  padding: 1rem 2rem;
+  margin-bottom: 1.3rem;
+  background-color: #fff;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.front-page-content .left {
+  width: 100px;
+}
+
+.front-page-content .left img {
+  height: 80px;
+}
+
+.front-page-content .right {
+  width: 100%;
+  padding: 0 0 0 1rem;
 }

@@ -1,61 +1,42 @@
 ﻿@model Mvc.ViewModels.Home.HomeIndexViewModel
 
-<div class="row mb-4">
-  <div class="col-md-6">
-    <div class="front-page-header">Learn, Collaborate, Share Knowledge</div>
-
-    <div class="front-page-subheader">Lambda Forums is the world's fastest growing coding forum</div>
-
+<!-- FrontPage Splash -->
+<div class="front-page-splash mb-4">
+  <div class="front-page-header">Learn, Collaborate, Share Knowledge</div>
+  <div class="front-page-subheader">Lambda Forums is the world's fastest growing coding forum</div>
+  <div>
     <form asp-controller="search" asp-action="search" method="GET">
-      <input asp-for="SearchQuery" class="form-control my-2" placeholder="Search..." />
+      <div class="form-group">
+        <input asp-for="SearchQuery" class="form-control" placeholder="Search..." />
+      </div>
     </form>
   </div>
-
-  <div class="col-md-6"></div>
 </div>
 
-<div class="front-page-content row">
-  <h3 class="latest-posts">Latest Posts</h3>
-
-  <table class="table table-hover">
-    <tbody>
-      @foreach (var post in Model.LatestPosts)
-      {
-        <tr class="py-0">
-          <td>
-            <img src="@post.Forum.ImageUrl" alt="">
-
-            <div class="post-title">
-              <a asp-controller="posts" asp-action="index" asp-route-id="@post.Id">
-                @post.Title
-              </a>
-            </div>
-
-            <div class="post-subtitle">
-              <div class="post-replies">
-                @if (post.PostRepliesCount == 0)
-                {
-                  <span>No Replies</span>
-                }
-                @if (post.PostRepliesCount == 1)
-                {
-                  <span>@post.PostRepliesCount Reply</span>
-                }
-                @if (post.PostRepliesCount > 1)
-                {
-                  <span>@post.PostRepliesCount Replies</span>
-                }
-              </div>
-            </div>
-
-            <div class="post-author">
-              <a asp-controller="authors" asp-action="detail" asp-route-id="@post.Author.Id">
-                @post.Author.Name
-              </a>
-            </div>
-          </td>
-        </tr>
-      }
-    </tbody>
-  </table>
+<!-- FrontPage Content -->
+<div class="front-page-content">
+  <h3>Latest Posts</h3>
+  <div class="latest-posts">
+    @foreach (var post in Model.LatestPosts)
+    {
+      <div class="post">
+        <div class="left">
+          <img src="@post.Forum.ImageUrl" alt="">
+        </div>
+        <div class="right">
+          <div class="post-title">
+            <a asp-controller="posts" asp-action="index" asp-route-id="@post.Id">@post.Title</a>
+          </div>
+          <div class="post-subtitle">
+            @if (@post.PostRepliesCount == 0) { <span>No Replies</span> }
+            @if (@post.PostRepliesCount == 1) { <span>@post.PostRepliesCount Reply</span> }
+            @if (@post.PostRepliesCount > 1)  { <span>@post.PostRepliesCount Replies</span> }
+          </div>
+          <div class="post-author">
+            <a asp-controller="authors" asp-action="detail" asp-route-id="@post.Author.Id">@post.Author.Name</a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
 </div>
